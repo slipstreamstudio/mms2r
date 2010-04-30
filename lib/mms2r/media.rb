@@ -185,7 +185,7 @@ module MMS2R
       ret = case
         when from.include?(from_domain)
           from_domain
-        when return_path.any?
+        when return_path.present?
           return_path
         else
           from_domain
