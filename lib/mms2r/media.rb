@@ -383,7 +383,7 @@ module MMS2R
       ignore   = ignores.detect{ |test| filename?(part) == test}
       ignore ||= ignores.detect{ |test| filename?(part) =~ eval(test) if test.index('/') == 0 }
       ignore ||= ignores.detect{ |test| part.body.decoded.strip =~ eval(test) if test.index('/') == 0 }
-      ignore ||= (part.body.decoded.force_encoding(Encoding.find('locale')).strip.size == 0 ? true : nil)
+      ignore ||= (part.body.decoded.strip.size == 0 ? true : nil) rescue ""
       ignore.nil? ? false : true
     end
 
