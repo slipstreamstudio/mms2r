@@ -406,7 +406,7 @@ module MMS2R
       if part.part_type? =~ /^text\// ||
          part.part_type? == 'application/smil'
         type, content = transform_text_part(part)
-        mode = 'w'
+        mode = 'wb'
       else
         if part.part_type? == 'application/octet-stream'
           type = type_from_filename(filename?(part))

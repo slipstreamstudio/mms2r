@@ -182,7 +182,7 @@ module MMS2R
       def sprint_write_file(type, content, file = nil)
         file = sprint_temp_file(type) if file.nil?
         log("#{self.class} writing file #{file}", :info)
-        File.open(file,'w'){ |f| f.write(content) }
+        File.open(file,'wb'){ |f| f.write(content) }
         return type, file
       end
 

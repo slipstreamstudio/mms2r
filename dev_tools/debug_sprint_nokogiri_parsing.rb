@@ -79,7 +79,7 @@ srcs.each do |src|
   ext = /^[^\/]+\/(.+)/.match(res.content_type)[1]
   file_name ="#{base}.#{cnt}.#{ext}"
   puts "writing file: #{file_name}"
-  File.open(file_name,'w'){ |f| f.write(res.body) }
+  File.open(file_name,'wb'){ |f| f.write(res.body) }
   puts "file is sized #{File.size(file_name)}"
   cnt = cnt + 1
 end
