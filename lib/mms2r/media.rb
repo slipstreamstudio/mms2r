@@ -278,7 +278,7 @@ module MMS2R
 
     def body
       text_file = default_text
-      @body = text_file ? IO.readlines(text_file.path).join.strip : ""
+      @body = text_file ? IO.readlines(text_file.path, :encoding=>'utf-8').join.strip : ""
       @body
     end
 
@@ -383,7 +383,7 @@ module MMS2R
       ignore   = ignores.detect{ |test| filename?(part) == test}
       ignore ||= ignores.detect{ |test| filename?(part) =~ eval(test) if test.index('/') == 0 }
       ignore ||= ignores.detect{ |test| part.body.decoded.strip =~ eval(test) if test.index('/') == 0 }
-      ignore ||= (part.body.decoded.force_encoding(Encoding.find('locale')).strip.size == 0 ? true : nil) rescue ""
+      ignore ||= (part.body.decoded).strip.size == 0 ? true : nil) rescue ""
       ignore.nil? ? false : true
     end
 
